@@ -1,22 +1,20 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import {Router} from "./router.js";
-import {Home} from "./home/home.js";
-import {Footer} from "./footer/footer.js";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
 
-export class App extends React.Component{
-	render(){
-		return(
-			<div>
-				<div>
-					<Router />
-				</div>
-				<div>
-					<Footer />
-				</div>
-			</div>
-		);
-	}
+import {App} from './app.js';
+
+function render (App){
+  ReactDOM.render(
+    <AppContainer>
+      <App />
+    </AppContainer>,
+    document.getElementById('app')
+  )
 }
 
-ReactDOM.render(<App />,document.getElementById('app'));
+render(App)
+
+if (module.hot) {
+  module.hot.accept('./app.js', () => { render(App) })
+}
